@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="787ce64c-5753-45d5-934e-a0a89de26623" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HuiswerkBank.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BankAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="787ce64c-5753-45d5-934e-a0a89de26623" name="Changes" comment="Functionaliteiten: nieuwe bank aanmaken. nieuwe rekeningen aanmaken. geld opnemen van een rekening. geld storten op een rekening. geld van een rekening naar een andere rekening overmaken. een statische wisselkoers is ingebouwd waarmee valuta in elkaar kunnen worden omgerekend. gebruikers kunnen ook hun saldo in een valuta naar keuze opvragen. en er is een transactiegeschiedenis">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankAccount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +35,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="HuiswerkBank" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,7 +69,30 @@
       <option name="presentableId" value="Default" />
       <updated>1684762522182</updated>
     </task>
+    <task id="LOCAL-00001" summary="Functionaliteiten: nieuwe bank aanmaken. nieuwe rekeningen aanmaken. geld opnemen van een rekening. geld storten op een rekening. geld van een rekening naar een andere rekening overmaken. een statische wisselkoers is ingebouwd waarmee valuta in elkaar kunnen worden omgerekend. gebruikers kunnen ook hun saldo in een valuta naar keuze opvragen. en er is een transactiegeschiedenis">
+      <created>1684867585190</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684867585190</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Functionaliteiten: nieuwe bank aanmaken. nieuwe rekeningen aanmaken. geld opnemen van een rekening. geld storten op een rekening. geld van een rekening naar een andere rekening overmaken. een statische wisselkoers is ingebouwd waarmee valuta in elkaar kunnen worden omgerekend. gebruikers kunnen ook hun saldo in een valuta naar keuze opvragen. en er is een transactiegeschiedenis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Functionaliteiten: nieuwe bank aanmaken. nieuwe rekeningen aanmaken. geld opnemen van een rekening. geld storten op een rekening. geld van een rekening naar een andere rekening overmaken. een statische wisselkoers is ingebouwd waarmee valuta in elkaar kunnen worden omgerekend. gebruikers kunnen ook hun saldo in een valuta naar keuze opvragen. en er is een transactiegeschiedenis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
