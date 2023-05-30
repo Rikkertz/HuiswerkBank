@@ -2,12 +2,12 @@ public class Main {
     public static void main(String[] args) {
 
         Bank bank = new Bank();
-        Person guest = Person.guest;
+        Person piet = new Person("Piet");
 
         // Nieuwe rekeningen aanmaken
 
-        bank.createAccount(guest, "NL01ABCD1234567890", 1000.0);
-        bank.createAccount(guest, "NL02EFGH1234567890", 500.0);
+        bank.createAccount(piet, "NL01ABCD1234567890", 1000.0);
+        bank.createAccount("NL02EFGH1234567890", 500.0);
 
         // Geld storten
 

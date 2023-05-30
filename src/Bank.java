@@ -49,6 +49,10 @@ public class Bank {
         getAccount(accountNumber).logWelcome(BANK_NAME);
     }
 
+    public void createAccount(String accountNumber, double balance) {
+        this.createAccount(Person.guest, accountNumber, balance);
+    }
+
     public BankAccount getAccount(String accountNumber) {
         if (this.accountExists(accountNumber)) {
             return this.registry.get(accountNumber);
@@ -99,7 +103,7 @@ public class Bank {
             return exchangeRate * money;
         } catch (NullPointerException e) {
             System.out.println("Unknown currency.");
-            return 0.;
+            return 0;
         }
     }
 
@@ -132,12 +136,13 @@ public class Bank {
     }
 
 
-    private static class BankAccount {
+    class BankAccount {
 
         public final String accountNumber;
         private double balance;
         //    private String[] transactionHistory = new String[100];
         private final List<String> transactionHistory;
+        private Person owner;
 
         // Method to track and log method invocations
         public void logTransaction(String methodName, Object... args) {
@@ -163,18 +168,12 @@ public class Bank {
             logTransaction("Welcome to " + bank + ". Your account number is: " + accountNumber + '.');
         }
 
-        public BankAccount(String accountNumber, double balance) {
-            this.accountNumber = accountNumber;
-            this.balance = balance;
-            transactionHistory = new ArrayList<>();
-        }
-
 
         public BankAccount(Person owner, String accountNumber, double balance) {
+            this.owner = owner;
             this.accountNumber = accountNumber;
             this.balance = balance;
             transactionHistory = new ArrayList<>();
-//        logTransaction("Welcome to " + Bank.BANK_NAME + ". Your account number is: " + accountNumber + '.');
         }
 
         public String getAccountNumber() {
@@ -223,7 +222,8 @@ public class Bank {
         @Override
         public String toString() {
             return "BankAccount{" +
-                    "accountNumber='" + accountNumber + '\'' +
+                    "owner= " + owner +
+                    ", accountNumber='" + accountNumber + '\'' +
                     ", balance=€" + balance +
                     "}";
         }
@@ -245,6 +245,12 @@ public class Bank {
 
         public String getSymbol() {
             return symbol;
+        }
+    }
+    class SavingsAccount extends BankAccount{
+
+        public SavingsAccount(Person owner, String accountNumber, double balance) {
+            super(owner, accountNumber, balance);
         }
     }
 }
