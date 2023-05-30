@@ -19,12 +19,12 @@ public class Bank {
 
     private final HashMap<String, BankAccount> registry;
     public static final String BANK_NAME = "BankyMcBankface";
-    public static HashMap<String, Currency> exchangeRates;
 
+    public static HashMap<String, Currency> exchangeRates;
     private ArrayList<String> bankLog;
 
     static {
-        HashMap<String, Currency> exchangeRates = new HashMap<>();
+        exchangeRates = new HashMap<>();
         exchangeRates.put("EUR", new Currency(1.0, "€"));
         exchangeRates.put("USD", new Currency(1.23396, "$"));
         exchangeRates.put("AUD", new Currency(1.566015, "A$"));
@@ -137,7 +137,6 @@ public class Bank {
 
 
     class BankAccount {
-
         public final String accountNumber;
         private double balance;
         //    private String[] transactionHistory = new String[100];
