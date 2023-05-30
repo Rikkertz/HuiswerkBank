@@ -33,6 +33,7 @@ public class Bank {
         exchangeRates.put("CNY", new Currency(7.827874, "¥"));
         exchangeRates.put("GBP", new Currency(0.882047, "£"));
         exchangeRates.put("JPY", new Currency(132.360679, "¥"));
+        exchangeRates.put("COW", new Currency(0.00112, "🐮"));
     }
 
     public Bank() {
@@ -285,7 +286,6 @@ public class Bank {
     }
     class SavingsAccount extends BankAccount{
         private double interestRate;
-
 
         public SavingsAccount(Person owner, String accountNumber, double balance, double interestRate) {
             super(owner, accountNumber, balance);

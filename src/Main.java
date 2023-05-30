@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -14,11 +12,13 @@ public class Main {
         bank.createAccount("NL03IJKL1234567890", 2000, "Savings");
 
         // Geld storten
-
+        System.out.println(bank.getAccounts("NL01ABCD1234567890"));
+        System.out.println(bank.getAccounts("NL02EFGH1234567890"));
+        System.out.println(bank.getAccounts("NL03IJKL1234567890"));
         bank.deposit("NL01ABCD1234567890", 250.0);
 
         // Geld opnemen
-        bank.withdraw("NL02EFGH1234567890", 200.0);
+        bank.withdraw("NL03IJKL1234567890", 1000.0);
 
         // Saldo controleren
 
@@ -33,7 +33,7 @@ public class Main {
         System.out.println(bank.getAccounts("NL01ABCD1234567890"));
         System.out.println(bank.getAccounts("NL02EFGH1234567890"));
         System.out.println(bank.getAccounts("NL03IJKL1234567890"));
-        System.out.println(bank.getAccounts(guest));
+        System.out.println(bank.getBalance("NL03IJKL1234567890","COW"));
 
     }
 }
