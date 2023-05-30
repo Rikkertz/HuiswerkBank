@@ -46,18 +46,51 @@ public class Bank {
             return;
         }
         registry.put(accountNumber, new BankAccount(owner, accountNumber, balance));
-        getAccount(accountNumber).logWelcome(BANK_NAME);
+        getAccounts(accountNumber).logWelcome(BANK_NAME);
     }
 
     public void createAccount(String accountNumber, double balance) {
         this.createAccount(Person.guest, accountNumber, balance);
     }
 
-    public BankAccount getAccount(String accountNumber) {
+    public void createAccount(Person owner, String accountNumber, double balance, String type) {
+        switch (type){
+            case "Savings":
+                if (this.accountExists(accountNumber)) {
+                    System.out.println("You tried to create an account with account number: " + accountNumber + '.');
+                    System.out.println("However, this account already exists.");
+                    return;
+                }
+                registry.put(accountNumber, new SavingsAccount(owner, accountNumber, balance));
+                getAccounts(accountNumber).logWelcome(BANK_NAME);
+                break;
+            case "Loan": //TODO
+                break;
+            default:
+                this.createAccount(owner, accountNumber, balance);
+        }
+    }
+
+    public void createAccount(String accountNumber, double balance, String type) {
+        this.createAccount(Person.guest, accountNumber, balance, type);
+    }
+
+    public BankAccount getAccounts(String accountNumber) {
         if (this.accountExists(accountNumber)) {
             return this.registry.get(accountNumber);
         }
         throw new RuntimeException("This account does not exist!");
+    }
+
+    public ArrayList<BankAccount> getAccounts(Person owner) {
+        ArrayList<BankAccount> accounts = new ArrayList<>();
+        for (BankAccount account:
+             this.registry.values()) {
+            if (account.owner == owner) {
+                accounts.add(account);
+            }
+        }
+        return accounts;
     }
 
     /**
@@ -67,7 +100,7 @@ public class Bank {
      * @return The account balance in euros.
      */
     public String getBalance(String accountNumber) {
-        BigDecimal balance = BigDecimal.valueOf(getAccount(accountNumber).getBalance());
+        BigDecimal balance = BigDecimal.valueOf(getAccounts(accountNumber).getBalance());
         return "€".concat(balance.setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -79,7 +112,7 @@ public class Bank {
      * @return The account balance in the specified currency.
      */
     public String getBalance(String accountNumber, String currency) {
-        BigDecimal balance = BigDecimal.valueOf(getAccount(accountNumber).getBalance(currency));
+        BigDecimal balance = BigDecimal.valueOf(getAccounts(accountNumber).getBalance(currency));
         return exchangeRates.get(currency).getSymbol().concat(balance.setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -108,11 +141,11 @@ public class Bank {
     }
 
     public void deposit(String accountNumber, double balance) {
-        this.getAccount(accountNumber).deposit(balance);
+        this.getAccounts(accountNumber).deposit(balance);
     }
 
     public void withdraw(String accountNumber, double balance) {
-        this.getAccount(accountNumber).withdraw(balance);
+        this.getAccounts(accountNumber).withdraw(balance);
     }
 
     public void transfer(String accountNumberOrigin, String accountNumberDestination, double balance) {
@@ -200,6 +233,10 @@ public class Bank {
             return balance * exchangeRates.get(currency).getExchangeRate();
         }
 
+        public String getOwner() {
+            return owner.name;
+        }
+
         public void deposit(double money) {
             if (money < 0) {
                 System.out.println("Invalid deposit!");
@@ -221,7 +258,7 @@ public class Bank {
         @Override
         public String toString() {
             return "BankAccount{" +
-                    "owner= " + owner +
+                    "owner= " + owner.name +
                     ", accountNumber='" + accountNumber + '\'' +
                     ", balance=€" + balance +
                     "}";
@@ -247,9 +284,47 @@ public class Bank {
         }
     }
     class SavingsAccount extends BankAccount{
+        private double interestRate;
+
+
+        public SavingsAccount(Person owner, String accountNumber, double balance, double interestRate) {
+            super(owner, accountNumber, balance);
+            this.interestRate = interestRate;
+        }
 
         public SavingsAccount(Person owner, String accountNumber, double balance) {
-            super(owner, accountNumber, balance);
+            this(owner, accountNumber, balance, 1.1);
+        }
+
+        public void setInterestRate(double interestRate) {
+            this.interestRate = interestRate;
+        }
+
+        public double getInterestRate() {
+            return interestRate;
+        }
+
+        public void addInterest() {
+            if (this.interestRate < 0) {
+                System.out.println("You are broke now.");
+                this.withdraw(this.getBalance());
+                return;
+            }
+            if (this.interestRate < 1) {
+                this.withdraw(this.getBalance() * (1-this.interestRate));
+                return;
+            }
+            if(this.interestRate > 1) {
+                this.deposit(this.getBalance() * (this.interestRate-1));
+            }
+        }
+        @Override
+        public String toString() {
+            return "SavingsAccount{" +
+                    "owner= " + this.getOwner() +
+                    ", accountNumber='" + accountNumber + '\'' +
+                    ", balance=€" + this.getBalance() +
+                    "}";
         }
     }
 }

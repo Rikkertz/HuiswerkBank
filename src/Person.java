@@ -3,8 +3,6 @@ import java.util.Set;
 
 public class Person {
     String name;
-    public static Person guest;
-
     private static final Set<String> names = new HashSet<String>();
 
     public Person(String name) throws RuntimeException {
@@ -15,7 +13,12 @@ public class Person {
         this.name = name;
     }
 
-    static {
-        guest = new Person("Guest");
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                '}';
     }
+
+    public static Person guest = new Person("Guest");
 }
