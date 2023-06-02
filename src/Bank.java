@@ -17,7 +17,7 @@ public class Bank {
         System.out.println(bank);
     }
 
-    private final HashMap<String, BankAccount> registry;
+    private final HashMap<String, IAccount> registry;
     public static final String BANK_NAME = "BankyMcBankface";
 
     public static HashMap<String, Currency> exchangeRates;
@@ -76,16 +76,16 @@ public class Bank {
         this.createAccount(Person.guest, accountNumber, balance, type);
     }
 
-    public BankAccount getAccounts(String accountNumber) {
+    public IAccount getAccounts(String accountNumber) {
         if (this.accountExists(accountNumber)) {
             return this.registry.get(accountNumber);
         }
         throw new RuntimeException("This account does not exist!");
     }
 
-    public ArrayList<BankAccount> getAccounts(Person owner) {
-        ArrayList<BankAccount> accounts = new ArrayList<>();
-        for (BankAccount account:
+    public ArrayList<IAccount> getAccounts(Person owner) {
+        ArrayList<IAccount> accounts = new ArrayList<>();
+        for (IAccount account:
              this.registry.values()) {
             if (account.owner == owner) {
                 accounts.add(account);
@@ -119,7 +119,7 @@ public class Bank {
 
     public String getBankLog() {
         StringBuilder bankLog = new StringBuilder();
-        for (BankAccount account :
+        for (IAccount account :
                 this.registry.values()) {
             bankLog.append("This is the log for: ").append(account.getAccountNumber()).append("\n");
             bankLog.append(account.getTransactionHistory()).append("\n");
@@ -169,8 +169,25 @@ public class Bank {
         return BANK_NAME;
     }
 
+    interface IAccount {
+        Person owner = null;
+        public String getAccountNumber();
 
-    class BankAccount {
+        void logWelcome(String bankName);
+
+        void deposit(double balance);
+
+        void withdraw(double balance);
+
+        String getTransactionHistory();
+        String getOwner();
+
+        double getBalance();
+        double getBalance(String currency);
+    }
+
+
+    class BankAccount implements IAccount{
         public final String accountNumber;
         private double balance;
         //    private String[] transactionHistory = new String[100];
@@ -284,7 +301,7 @@ public class Bank {
             return symbol;
         }
     }
-    class SavingsAccount extends BankAccount{
+    class SavingsAccount extends BankAccount implements IAccount{
         private double interestRate;
 
         public SavingsAccount(Person owner, String accountNumber, double balance, double interestRate) {

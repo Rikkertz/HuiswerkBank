@@ -31,8 +31,8 @@ public class Main {
         System.out.println(bank.getBalance("NL02EFGH1234567890", "USD"));
 
         System.out.println(bank.getAccounts("NL01ABCD1234567890"));
-        System.out.println(bank.getAccounts("NL02EFGH1234567890"));
-        System.out.println(bank.getAccounts("NL03IJKL1234567890"));
+        System.out.println(bank.getAccounts("NL02EFGH1234567890").getClass());
+        System.out.println(bank.getAccounts("NL03IJKL1234567890").getClass());
         System.out.println(bank.getBalance("NL03IJKL1234567890","COW"));
 
     }
